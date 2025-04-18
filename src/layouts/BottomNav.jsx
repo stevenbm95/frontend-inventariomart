@@ -1,26 +1,27 @@
 import React from 'react';
 import { Home, Package, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const BottomNav = () => {
   return (
     <div className="btm-nav md:hidden">
       <button>
-        <a href="/" className="text-primary">
+        <Link to="/" className="text-primary">
           <Home />
           <span className="btm-nav-label">Inicio</span>
-        </a>
+        </Link>
       </button>
       <button>
-        <a href="/productos" className="text-primary">
+        <Link to="/admin" className="text-primary">
           <Package />
-          <span className="btm-nav-label">Productos</span>
-        </a>
+          <span className="btm-nav-label">Admin</span>
+        </Link>
       </button>
       <button>
-        <a href="/perfil" className="text-primary">
+        <Link to="/accounts" className="text-primary">
           <User />
           <span className="btm-nav-label">Perfil</span>
-        </a>
+        </Link>
       </button>
     </div>
   );

@@ -4,7 +4,7 @@ import useCartStore from "../store/cartStore";
 
 const ProductCard = ({ product }) => {
   const { user } = useUserStore();
-  const { cart, addToCart } = useCartStore();
+  const { addToCart } = useCartStore();
 
 
   return (

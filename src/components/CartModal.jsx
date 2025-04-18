@@ -7,10 +7,12 @@ import { formatPrice } from "../utils/formatPrice";
 import { createOrder } from "../services/orderService";
 
 const CartModal = () => {
-  const { cart, removeFromCart, updateQuantity, clearCart } = useCartStore();
+  const { cart, removeFromCart, clearCart } = useCartStore();
   const { users } = useUserStore();
   const { fetchDrinks } = useDrinkStore();
   const [selectedUserId, setSelectedUserId] = useState("");
+
+
 
   const total = cart.reduce(
     (acc, item) => acc + item.salePrice * item.quantity,
@@ -69,7 +71,8 @@ const CartModal = () => {
           </select>
         </h3>
 
-        {cart.length === 0 ? (
+        {
+        cart.length === 0 ? (
           <p className="text-center">Tu carrito está vacío</p>
         ) : (
           <div className="space-y-4">
