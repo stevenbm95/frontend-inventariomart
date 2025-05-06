@@ -4,7 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import AdminPage from "./pages/AdminPage";
-import PendingAccountsPage from "./pages/PendingAccountsPage";
+import PendingOrdersPage from "./pages/PendingOrdersPage";
 import ConfirmModal from "./components/ConfirmationModal";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 
           <Route path="/auth" element={<LoginPage />} />
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/accounts" element={<PendingAccountsPage />} />
+          <Route path="/orders" element={<PendingOrdersPage />} />
         </Route>
       </Routes>
       <ConfirmModal />

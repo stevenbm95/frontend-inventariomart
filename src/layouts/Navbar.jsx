@@ -8,7 +8,7 @@ const Navbar = () => {
       <nav className="flex gap-4">
         <Link to="/" className="btn btn-ghost">Inicio</Link>
         <Link to="/admin" className="btn btn-ghost">Administracion</Link>
-        <Link to="/accounts" className="btn btn-ghost">Cuentas</Link>
+        <Link to="/orders" className="btn btn-ghost">Cuentas</Link>
       </nav>
     </div>
   );

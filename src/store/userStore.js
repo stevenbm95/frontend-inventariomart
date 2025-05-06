@@ -8,7 +8,7 @@ const useUserStore = create((set) => ({
   setIsLogin: (isLogin) => set({ isLogin }),
   setUser: (user) => set({ user }),
   fetchUsers: async  () => {
-    const { data } = await axiosInstance.get('/users/get-users');
+    const { data } = await axiosInstance.get('/users');
     set({ users: data });
   } 
   

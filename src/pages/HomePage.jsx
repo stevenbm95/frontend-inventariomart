@@ -4,17 +4,17 @@ import CartModal from "../components/CartModal";
 import GroupedDrinksList from "../components/GroupedDrinksList";
 import useCartStore from "../store/cartStore";
 import useUserStore from "../store/userStore";
-import usePendingAccountsStore from "../store/pendingAccountsStore";
+import usePendingOrdersStore from "../store/pendingOrdersStore";
 
 const HomePage = () => {
   const [showCart, setShowCart] = useState(false);
   const { addToCart } = useCartStore();
   const { fetchUsers } = useUserStore();
-  const { fetchAccountsByStatus } = usePendingAccountsStore();
+  const { fetchOrdersByStatus } = usePendingOrdersStore();
 
   useEffect(() => {
     fetchUsers();
-    fetchAccountsByStatus('pending');
+    fetchOrdersByStatus('pending');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

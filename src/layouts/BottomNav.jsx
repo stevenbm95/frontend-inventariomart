@@ -18,7 +18,7 @@ const BottomNav = () => {
         </Link>
       </button>
       <button>
-        <Link to="/accounts" className="text-primary">
+        <Link to="/orders" className="text-primary">
           <User />
           <span className="btm-nav-label">Perfil</span>
         </Link>

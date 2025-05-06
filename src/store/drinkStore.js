@@ -4,15 +4,8 @@ import axiosInstance from "../axios";
 const useDrinkStore = create((set, get) => ({
   drinks: [],
   fetchDrinks: async () => {
-    const { data } = await axiosInstance.get('/drinks/get-drinks');
-    const drinksArray = data;
-
-    const drinksWithStock = drinksArray.map(d => ({
-      ...d,
-      stock: d.quantity,
-      quantity: undefined,
-    }));
-    set({ drinks: drinksWithStock });
+    const { data } = await axiosInstance.get('/drinks');
+    set({ drinks: data });
   },
   getGroupedDrinks: () => {
     const drinks = get().drinks;
