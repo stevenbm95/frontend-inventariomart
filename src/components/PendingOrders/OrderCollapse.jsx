@@ -19,7 +19,6 @@ const OrderCollapse = ({
   updateOrderItemQuantity,
   refreshOrders,
 }) => {
-  console.log(order.orderItems);
   const toggleCollapse = () => setOpenIndex(openIndex === index ? null : index);
 
   return (
@@ -75,7 +74,7 @@ const OrderCollapse = ({
                       refreshOrders={refreshOrders}
                     />
                   </td>
-                  <td className="text-right">
+                  <td className="text-right flex flex-col items-end">
                     <span className="text-xs">
                       {formatPrice(item.drink.salePrice)}
                     </span>

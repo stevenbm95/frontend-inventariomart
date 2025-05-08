@@ -37,11 +37,13 @@ const CartModal = () => {
     };
 
     try {
-      await createOrder(orderData);
+      const response = await createOrder(orderData);
       await fetchDrinks();
       clearCart();
+      console.log(response);
       document.getElementById("cart_modal").close();
-      alert("Pedido realizado con éxito");
+      // toast
+      // alert("Pedido realizado con éxito");
     } catch (err) {
       console.error(err);
       alert("Error al crear el pedido");

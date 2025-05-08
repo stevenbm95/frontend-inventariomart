@@ -14,9 +14,6 @@ const QuantityEditor = ({
   refreshOrders,
 }) => {
 
-  console.log(quantities);
-  console.log(quantity);
-  console.log("availableStock"+availableStock);
 
   const key = `${orderId}-${itemId}`;
   const currentQuantity = quantities[key] ?? quantity;

@@ -8,7 +8,7 @@ const OrderStatusAction = ({ status, orderId, handlePay, handleCancel }) => {
       </span>
     );
 
-  if (status === "canceled")
+  if (status === "cancelled")
     return (
       <span className="bg-red-700 rounded-full text-white text-xs px-2 py-1">
         Cancelado

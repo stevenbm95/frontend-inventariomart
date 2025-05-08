@@ -1,17 +1,28 @@
 import React, { useEffect, useMemo, useState } from "react";
 import useDrinkStore from "../store/drinkStore";
 import { CircleCheck } from "lucide-react";
+import { toast } from "react-toastify";
 
 const GroupedDrinksList = ({ handleEditStock }) => {
   const { fetchDrinks } = useDrinkStore();
   const [openIndex, setOpenIndex] = useState(null);
+  const [addedItems, setAddedItems] = useState([]);
 
   useEffect(() => {
     fetchDrinks();
   }, []);
-
   const drinks = useDrinkStore((state) => state.drinks);
   const getGroupedDrinks = useDrinkStore.getState().getGroupedDrinks;
+
+  const handleCheck = (variant) => {
+    handleEditStock(variant);
+    if (!addedItems.includes(variant.id)) {
+      setAddedItems([...addedItems, variant.id]);
+      toast.success(`Agregado una ${variant.name} en ${variant.unit}`);
+    } else {
+      toast.info(`Agregado una ${variant.name} en ${variant.unit}`);
+    }
+  };
 
   // Solo se calcula cuando cambia el arreglo de bebidas
   const groupedDrinks = useMemo(() => getGroupedDrinks(), [drinks]);
@@ -55,13 +66,15 @@ const GroupedDrinksList = ({ handleEditStock }) => {
                         <td>{variant.stock}</td>
                         <td className="space-x-2">
                           {handleEditStock && (
-                            <CircleCheck className="text-primary hover:cursor-pointer" size={20} onClick={() => handleEditStock(variant)} />
-                            // <button
-                            //   className="btn btn-xs btn-info"
-                            //   onClick={() => handleEditStock(variant)}
-                            // >
-                            //   {text}
-                            // </button>
+                            <CircleCheck
+                              className={`text-${
+                                addedItems.includes(variant.id)
+                                  ? "green-500"
+                                  : "primary"
+                              } hover:cursor-pointer active:scale-90 transition duration-150`}
+                              size={20}
+                              onClick={() => handleCheck(variant)}
+                            />
                           )}
                         </td>
                       </tr>
