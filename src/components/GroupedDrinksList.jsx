@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import useDrinkStore from "../store/drinkStore";
-import { CircleCheck } from "lucide-react";
+import { CircleCheck, CircleX } from "lucide-react";
 import { toast } from "react-toastify";
 
 const GroupedDrinksList = ({ handleEditStock }) => {
@@ -65,17 +65,18 @@ const GroupedDrinksList = ({ handleEditStock }) => {
                         <td>{variant.unit}</td>
                         <td>{variant.stock}</td>
                         <td className="space-x-2">
-                          {handleEditStock && (
+                          {variant.stock > 0 ?
                             <CircleCheck
-                              className={`text-${
+                              className={`${
                                 addedItems.includes(variant.id)
-                                  ? "green-500"
-                                  : "primary"
+                                  ? "text-green-500"
+                                  : "text-primary"
                               } hover:cursor-pointer active:scale-90 transition duration-150`}
-                              size={20}
+                              size={22}
                               onClick={() => handleCheck(variant)}
                             />
-                          )}
+                           : <CircleX size={22} className="text-red-500" />
+                          }
                         </td>
                       </tr>
                     ))}
