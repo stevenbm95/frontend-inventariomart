@@ -1,2 +1,90 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+/*:root {
+  --primary: #FF5C8D;  // Rosa claro 
+  --secondary: #4F85B1; // Azul suave 
+  --third: #2D3748; // Gris oscuro 
+} */
+
+:root {
+  --primary: #FF8C00; /* Naranja cálido */
+  --secondary: #1E90FF;  /* Azul brillante */
+  --third: #32CD32; /* Verde lima */
+}
+
+/* Usar las variables en tus clases personalizadas para texto */
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-secondary {
+  color: var(--secondary) !important;
+}
+
+.text-third {
+  color: var(--third) !important;
+}
+
+/* Usar las variables en las clases de fondo */
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+.bg-third {
+  background-color: var(--third) !important;
+}
+
+/* Usar las variables en los botones */
+.btn-primary {
+  background-color: var(--primary) !important;
+  color: #1e1616 !important;
+  border: none;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background-color: #e67600 !important; /* versión más oscura del primario */
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.4); /* efecto sutil de focus */
+}
+
+/* Botón secundario */
+.btn-secondary {
+  background-color: var(--secondary) !important;
+  color: white !important;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #187bcd !important;
+}
+
+.btn-secondary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.4);
+}
+
+/* Botón terciario */
+.btn-third {
+  background-color: var(--third) !important;
+  color: white !important;
+  border: none;
+}
+
+.btn-third:hover {
+  background-color: #29b329 !important;
+}
+
+.btn-third:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(50, 205, 50, 0.4);
+}

@@ -1,4 +1,3 @@
-// src/components/AdminProductCard.jsx
 import React from 'react';
 
 const AdminProductCard = ({ product, onDelete, onEditStock }) => {

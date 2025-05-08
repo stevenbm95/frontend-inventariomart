@@ -1,6 +1,6 @@
 
 import React, { useEffect } from "react";
-import PendingOrdersTable from "../components/PendingOrdersTable";
+import PendingOrdersTable from "../components/PendingOrders/PendingOrdersTable";
 import usePendingOrdersStore from "../store/pendingOrdersStore";
 
 const PendingOrdersPage = () => {

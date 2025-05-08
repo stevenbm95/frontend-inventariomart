@@ -1,6 +1,5 @@
-import React, {  useState } from 'react';
+import React from 'react';
 import useCartStore from "../store/cartStore";
-import CartModal from "./CartModal";
 
 const CartButton = () => {
   const { cart } = useCartStore();
@@ -11,7 +10,7 @@ const CartButton = () => {
         onClick={() => 
           document.getElementById('cart_modal').showModal()}
         
-        className="fixed bottom-4 right-4 btn btn-accent"
+        className="fixed bottom-18 right-4 btn btn-primary btn-sm md:btn-md hover:disabled border-none shadow-none"
       >
         Ver pedido ({cart.length})
       </button>

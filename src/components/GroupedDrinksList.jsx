@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import useDrinkStore from "../store/drinkStore";
+import { CircleCheck } from "lucide-react";
 
-const GroupedDrinksList = ({ handleEditStock, text }) => {
+const GroupedDrinksList = ({ handleEditStock }) => {
   const { fetchDrinks } = useDrinkStore();
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -54,12 +55,13 @@ const GroupedDrinksList = ({ handleEditStock, text }) => {
                         <td>{variant.stock}</td>
                         <td className="space-x-2">
                           {handleEditStock && (
-                            <button
-                              className="btn btn-xs btn-info"
-                              onClick={() => handleEditStock(variant)}
-                            >
-                              {text}
-                            </button>
+                            <CircleCheck className="text-primary hover:cursor-pointer" size={20} onClick={() => handleEditStock(variant)} />
+                            // <button
+                            //   className="btn btn-xs btn-info"
+                            //   onClick={() => handleEditStock(variant)}
+                            // >
+                            //   {text}
+                            // </button>
                           )}
                         </td>
                       </tr>

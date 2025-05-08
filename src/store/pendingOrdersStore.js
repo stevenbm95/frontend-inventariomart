@@ -1,7 +1,9 @@
 import { create } from "zustand";
 import axiosInstance from "../axios";
+import { findOrderAndUpdateItem } from "../utils/orderUtils";
+import {toast} from "react-toastify";
 
-const usePendingOrdersStore = create((set) => ({
+const usePendingOrdersStore = create((set, get) => ({
   orders: [],
   fetchOrders: async () => {
     const { data } = await axiosInstance.get("/orders");
@@ -27,7 +29,7 @@ const usePendingOrdersStore = create((set) => ({
   },
   cancelOrder: async (id) => {
     try {
-      await axiosInstance.patch(`/orders/${id}/cancel`); 
+      await axiosInstance.patch(`/orders/${id}/cancel`);
       set((state) => ({
         orders: state.orders.filter((account) => account.id !== id),
       }));
@@ -37,9 +39,7 @@ const usePendingOrdersStore = create((set) => ({
   },
   removeOrderItem: async (id, itemId) => {
     try {
-      await axiosInstance.delete(
-        `/orders/${id}/items/${itemId}`
-      );
+      await axiosInstance.delete(`/orders/${id}/items/${itemId}`);
       set((state) => ({
         orders: state.orders.map((order) =>
           order.id === id
@@ -54,36 +54,40 @@ const usePendingOrdersStore = create((set) => ({
       }));
     } catch (error) {
       console.log("Error eliminando item:", error);
-      
     }
   },
   updateOrderItemQuantity: async (orderItemId, quantity) => {
     try {
-      const response = await axiosInstance.patch(`/orders/item/${orderItemId}`, { quantity });
-      
-      // Actualizar el estado local
+      const { data } = await axiosInstance.patch(`/orders/item/${orderItemId}`, { quantity });
+      console.log(data);
+
+      const state = get();
+      const result = findOrderAndUpdateItem(
+        state.orders,
+        orderItemId,
+        quantity
+      );
+
+      if (!result) return;
+
+      const { orderId, updatedItems, totalAmount } = result;
+      await axiosInstance.put(`/orders/${orderId}`, {
+        // orderItems: updatedItems,
+        totalAmount,
+      });
+      toast.success(data.message);
+
       set((state) => ({
-        orders: state.orders.map(order => {
-          const updatedItems = order.orderItems.map(item => {
-            if (item.id === orderItemId) {
-              return { ...item, quantity };
-            }
-            return item;
-          });
-          
-          // Recalcular el total
-          const totalAmount = updatedItems.reduce(
-            (sum, item) => sum + (item.quantity * item.drink.salePrice), 
-            0
-          );
-          
-          return { ...order, orderItems: updatedItems, totalAmount };
-        })
+        orders: state.orders.map((order) =>
+          order.id === orderId
+            ? { ...order, orderItems: updatedItems, totalAmount }
+            : order
+        ),
       }));
-      
-      return response.data;
     } catch (error) {
-      console.error("Error updating item quantity:", error);
+      const message =
+      error?.response?.data?.message || "Error al actualizar cantidad";
+      toast.error(message);
       throw error;
     }
   },
